@@ -1,9 +1,5 @@
 
-import 'package:art/utils/api.dart';
 import "package:flutter/material.dart";
-import 'package:dio/dio.dart';
-import 'dart:convert';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class ArtWorksItem extends StatefulWidget {
   ArtWorksItem({Key key, this.item}) : super(key: key);
