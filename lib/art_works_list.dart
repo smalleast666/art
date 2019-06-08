@@ -1,12 +1,13 @@
 
-import 'dart:convert';
+import 'package:art/art_works_item.dart';
+import 'package:art/utils/api.dart';
 import "package:flutter/material.dart";
 import 'package:dio/dio.dart';
-
+import 'dart:convert';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class ArtWorks extends StatefulWidget {
   ArtWorks({Key key}) : super(key: key);
-
   _ArtWorksState createState() => _ArtWorksState();
 }
 
@@ -21,8 +22,7 @@ class _ArtWorksState extends State<ArtWorks> {
 
   void getHttp() async {
     try {
-      Response response = await Dio().get("http://gank.io/api/data/%E7%A6%8F%E5%88%A9/10/1");
-      // print(response['images']);
+      Response response = await Dio().get(Api().Fuli);
       Map<String, dynamic> data = json.decode(response.toString());
       print(data['results']);
       setState(() {
@@ -39,14 +39,19 @@ class _ArtWorksState extends State<ArtWorks> {
       appBar: AppBar(
         title: Text('图片'),
       ),
-      body: ListView.builder(
+      body: Container(
+        padding: EdgeInsets.all(20),
+        color: Colors.orange,
+        child: StaggeredGridView.countBuilder(
+        crossAxisCount: 4,
         itemCount: worksList.length,
-        itemExtent: 20.0, //强制高度为50.0
-
-        itemBuilder: (BuildContext context, int index) {
-          return Image.network(worksList[index]['url']);
-        }
-      ),
+        itemBuilder: (BuildContext context, int index) => ArtWorksItem(item: worksList[index]),
+          staggeredTileBuilder: (int index) =>
+              StaggeredTile.fit(2),
+          mainAxisSpacing: 8,
+          crossAxisSpacing: 8,
+        ),
+      )
     );
   }
 }
