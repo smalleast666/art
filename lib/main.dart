@@ -1,5 +1,5 @@
+import 'package:art/navigationBar.dart';
 import 'package:flutter/material.dart';
-import 'art_works_list.dart';
 
 void main() => runApp(MainApp());
 
@@ -13,7 +13,7 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ArtWorks(),
+      home: NavigationBar(),
     );
   }
 }
