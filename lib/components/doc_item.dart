@@ -12,42 +12,70 @@ class _DocState extends State<DocItem> {
  
   @override
   Widget build(BuildContext context) {
-    print(widget.item);
-    print('++++++');
     return GestureDetector(
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return WebView(url: widget.item['url']);
+          return WebView(url: widget.item.url);
         }));
-        // Navigator.of(context).pushNamed('webview');
       },
       child: Container(
-        padding: EdgeInsets.only(top: 10, left: 10, right: 10),
+        margin: EdgeInsets.only(top: 10, left: 15, right: 15),
+        padding: EdgeInsets.all(15),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12,
+              offset: Offset(0, 2.0),
+              blurRadius: 4
+            )
+          ]
+        ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(widget.item.desc),
-            Flex(
-              direction: Axis.horizontal,
-              children: <Widget>[
-                Expanded(
-                  flex: 2,
-                  child: Row(
-                    children: <Widget>[
-                      Icon(Icons.person),
-                      Text(widget.item.who),
-                    ],
-                  ),
+            Padding(
+              padding: EdgeInsets.only(bottom: 10),
+              child: Text(
+                widget.item.desc,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87
                 ),
-                Expanded(
-                  flex: 3,
-                  child: Row(
-                    children: <Widget>[
-                      Icon(Icons.query_builder),
-                      Text(widget.item.createdAt),
-                    ],
-                  ),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.person,
+                      color: Colors.black54,
+                    ),
+                    Text(
+                      widget.item.who,
+                      style: TextStyle(
+                        color: Colors.black54
+                      ),  
+                    ),
+                    Text(
+                      ' — ${widget.item.type}',
+                      style: TextStyle(
+                        color: Colors.black54
+                      ),  
+                    ),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.query_builder,
+                      color: Colors.black54
+                    ),
+                    Text(widget.item.createdAt.substring(0, 10)),
+                  ],
                 )
-                
               ],
             )
           ],

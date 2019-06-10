@@ -12,12 +12,23 @@ class Doc extends StatefulWidget {
   _DocState createState() => _DocState();
 }
 
-class _DocState extends State<Doc> {
+class _DocState extends State<Doc> with SingleTickerProviderStateMixin {
   List<GankInfo> list = List();
+  TabController _controller;
+  List<String> _tabs = <String>[
+    '全部',
+    'Android',
+    'iOS',
+    '前端',
+    '休息视频',
+    '拓展资源',
+    '瞎推荐',
+    'App'
+  ];
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+    _controller = TabController(vsync: this, length: _tabs.length);
     getHttp();
   }
   void getHttp() async {
@@ -25,35 +36,23 @@ class _DocState extends State<Doc> {
     setState(() {
       if (res.results.isNotEmpty) list.addAll(res.results);
     });
-    // .then((PageList list) {
-    //   print(list);
-    //   print('++++++++++++++++++++++++++++');
-    //   setState(() {
-    //     if (list.results.isEmpty) {
-    //       // _loadFinish = true;
-    //     } else {
-    //       list.addAll(list.results);
-    //     }
-    //   });
-    // });
-    
-    // try {
-    //   Response response = await Dio().get(Api().Today);
-    //   Map<String, dynamic> data = json.decode(response.toString());
-    //   setState(() {
-    //     list = data['results']['Android'];
-    //   });
-    // } catch (e) {
-    //   print(e);
-    // }
   }
   @override
   Widget build(BuildContext context) {
-    return list.length != 0 ? ListView.builder(
-      itemCount: list.length,
-      itemBuilder: (BuildContext context, int index) {
-        return DocItem(item: list[index]);
-      },
-    ) : Loading();
+    return Scaffold(
+      appBar: AppBar(
+        bottom: TabBar(
+          controller: _controller,
+          isScrollable: true,
+          tabs: _tabs.map((String tab) => Tab(text: tab)).toList(),
+        ),
+      ),
+      body: list.length != 0 ? ListView.builder(
+        itemCount: list.length,
+        itemBuilder: (BuildContext context, int index) {
+          return DocItem(item: list[index]);
+        },
+      ) : Loading(),
+    );
   }
 }
