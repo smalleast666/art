@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:art/components/myDrawer.dart';
 
 class OurLove extends StatefulWidget {
   OurLove({Key key}) : super(key: key);
