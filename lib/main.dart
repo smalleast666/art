@@ -1,4 +1,5 @@
 import 'package:art/navigationBar.dart';
+import 'package:art/pages/upload_img.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MainApp());
@@ -14,6 +15,9 @@ class MainApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: NavigationBar(),
+      routes: {
+        'up-load-img': (context) => UpLoadImg(),
+      },
     );
   }
 }

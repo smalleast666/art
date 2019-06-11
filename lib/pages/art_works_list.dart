@@ -1,7 +1,6 @@
 
 import 'package:art/components/art_works_item.dart';
 import 'package:art/components/loading.dart';
-import 'package:art/utils/api.dart';
 import "package:flutter/material.dart";
 import 'package:dio/dio.dart';
 import 'dart:convert';
@@ -22,7 +21,7 @@ class _ArtWorksState extends State<ArtWorks> {
 
   void getHttp() async {
     try {
-      Response response = await Dio().get(Api().Fuli);
+      Response response = await Dio().get('http://gank.io/api/data/%E7%A6%8F%E5%88%A9/10/1');
       Map<String, dynamic> data = json.decode(response.toString());
       print(data['results']);
       setState(() {

@@ -19,14 +19,14 @@ class _DocState extends State<DocItem> {
         }));
       },
       child: Container(
-        margin: EdgeInsets.only(top: 10, left: 15, right: 15),
+        margin: EdgeInsets.only(bottom: 10),
         padding: EdgeInsets.all(15),
         decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: [
             BoxShadow(
               color: Colors.black12,
-              offset: Offset(0, 2.0),
+              offset: Offset(0, 1),
               blurRadius: 4
             )
           ]
@@ -73,7 +73,12 @@ class _DocState extends State<DocItem> {
                       Icons.query_builder,
                       color: Colors.black54
                     ),
-                    Text(widget.item.createdAt.substring(0, 10)),
+                    Text(
+                      widget.item.createdAt.substring(0, 10),
+                      style: TextStyle(
+                        color: Colors.black54
+                      )
+                    ),
                   ],
                 )
               ],

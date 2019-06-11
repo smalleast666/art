@@ -15,6 +15,7 @@ class NavigationBar extends StatefulWidget {
 
 class _NavigationBarState extends State<NavigationBar> {
   int _currentIndex = 0;
+  double _elevation = 4;
   List<Widget> list = List();
   final pages = [OurLove(), ArtWorks(), Doc(), UpLoad(), Timing()];
   final List<BottomNavigationBarItem> bottomNavItems = [
@@ -39,13 +40,14 @@ class _NavigationBarState extends State<NavigationBar> {
       title: Text('Timing')
     ),
   ];
-  final List<String> appBarTitle= ['our love', 'art works', 'doc', 'up load picture', 'Timing'];
+  final List<String> appBarTitle= ['our love', 'art works', 'Doc', 'up load picture', 'Timing'];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(appBarTitle[_currentIndex]),
+        elevation: _elevation, // title 阴影
       ),
       drawer: MyDrawer(),
       bottomNavigationBar: BottomNavigationBar(
@@ -55,6 +57,8 @@ class _NavigationBarState extends State<NavigationBar> {
         onTap: (int index) {
           if (index != _currentIndex) {
             setState(() {
+              if (appBarTitle[index] == 'Doc') _elevation = 1;
+              else _elevation = 4;
               _currentIndex = index;
             });
           }
