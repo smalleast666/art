@@ -1,6 +1,7 @@
 import 'package:art/components/my_drawer.dart';
+import 'package:art/pages/chat.dart';
 import 'package:art/pages/doc.dart';
-import 'package:art/pages/ourLove.dart';
+// import 'package:art/pages/ourLove.dart';
 import 'package:art/pages/timing.dart';
 import 'package:art/pages/upLoad.dart';
 import 'package:art/pages/art_works_list.dart';
@@ -17,7 +18,7 @@ class _NavigationBarState extends State<NavigationBar> {
   int _currentIndex = 0;
   double _elevation = 4;
   List<Widget> list = List();
-  final pages = [OurLove(), ArtWorks(), Doc(), UpLoad(), Timing()];
+  final pages = [ChatScreen(), ArtWorks(), Doc(), UpLoad(), Timing()];
   final List<BottomNavigationBarItem> bottomNavItems = [
     BottomNavigationBarItem(
       icon: Icon(Icons.favorite),
